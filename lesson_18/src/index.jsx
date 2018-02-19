@@ -1,150 +1,189 @@
-// const h1 = document.getElementById('heading');
-
-// h1.addEventListener('click', () => alert('hello app'));
-
-//ниже две строки идентичны 
-// const React = requre('react'); 
-// import React from 'react';
-
 import React, { Component } from 'react';//импортируем всю библиотеку и класссомпонент
 import ReactDOM from 'react-dom';
-
-// import { render } from 'react-dom';  - импортируем из библиотеки одну функцию
-
-// const render = ReactDOM.render;
-// const Component = React.Component;
-
-
-// document.createElement('h1'); - внизу аналогичная запись на реакте
-
-//можно так 
-// let h1 = React.createElement('h1', {className: 'heading' , id:'heading'}, ['Hello']); //создание подобия тега h1
-// let div = document.getElementById('root');
-// ReactDOM.render(h1, div);
+const root = document.getElementById('root')
 
 /**********************/
 
-//можно так - это js код
-// ReactDOM.render(
-// 	React.createElement(
-// 		'h1',
-// 		 {className: 'heading' , id:'heading'},['Hello']
-// 		),
-// 		document.getElementById('root')
-// );
+// let i=0;
 
-// это jsx код
 
-// ReactDOM.render(
-// 	<h1 id="heading">Hdello</h1>,
-// 	document.getElementById('root')
-// );
+// setInterval( () => {
+// 	i +=1;
 
-/**********************/
-//
-// let h1;
-
-// h1 = React.createElement(
-// 	'h1', {id:'heding'}, ['FFFFF']
-// );
-
-/**********************/
-//реакт код, бейбел - преобразовываетв реакт код
-// let h1 = (
-// 	<h1 id="heading">
-// 		<em>RRR</em>
-// 		<mark>ff</mark>
+// 	let content = (
 // 		<div>
-// 			<ul>
-// 				<li>1</li>
-// 				<li>2</li>
-// 			</ul>
-// 		</div>
-// 	</h1>
+// 			From loading: {i}
+// 		</div> 
+// 	)
+
+// 	ReactDOM.render(content, root);
+// },1000);
+
+
+
+/**********************/
+// let i = 0;
+// let heading = ['hello', 'world', 'by'];
+
+// let content = (
+// 	<div>
+// 		<h2 style={{color:'red'}}>{heading[0][0].toUpperCase()+heading[0].slice(1)}!!!</h2>
+// 		<h2 style={{color:'green'}}>{heading[1][0].toUpperCase()+heading[1].slice(1)}!!!</h2>
+// 		<h2 style={{color:'blue'}}>{heading[2][0].toUpperCase()+heading[2].slice(1)}!!!</h2>
+// 	</div>
+	 
 // );
-/**********************/
-// let person = {
-// 	name: 'Tanya',
-// 	age: 24,
-// 	nale: 'dda'
-// };
 
-// let h1 = (
+
+/**********************/
+
+// function Heading(props){	
+// }
+
+// const Heading = function (props){}
+
+// const Heading = (props) => {}
+
+// const Heading = props => 'Hello' // вернеться значение после стрелок
+
+// const Heading = props => {   //если нужно описать несколько действий то прописываем так
+// 	return 'hfhf' + 'dghd';
+// }
+
+// const Heading = props => {
+// 	let a = props.first;
+// 	let b = 'world!!';
+// 	// return a + b;
+// 	// return <mark>a +b</mark>;  // a+b
+// 	// return <mark> {a+b} </mark>; //hello world!!
+// 	return(
+// 		<h1>
+// 			<mark>{a}</mark>
+// 			<del>{b}</del>
+// 		</h1>
+// 	)
+// }
+
+// let content = (
 // 	<div>
-// 		<h1>Name: {person.name}</h1>
-// 		<h2>Age: {person.age}</h2>
-// 		<h3>{getName(person)}</h3>
-// 		<h4>{ person.name.split('').join('-')}</h4>
-// 		<p>{person['nale']}</p>
-		
+// 		<Heading />
+// 		// {Heading()} //- так лучше не делать, выведет тоже самое
 // 	</div>
 // )
 
-// function getName(human){
-// 	return human.nale;
-// }
-
-/**********************/
-// const name = 'Anton';
-// function handleClick(){
-// 	alert('hfhfhf');
-// }
-
-// let h1=(
-// 	<div>
-// 		<h1 onClick={ handleClick}>hello, {name}</h1>
-// 	</div>
-// )
 
 /**********************/
 
-// class Person {
-// 	constructor(details){
-// 		this.name = details.name;
-// 		this.age = details.age;
+// class hoho{
+// 	a(){
+
+// 	}
+// 	b(){
+
+// 	}
+// 	render(props){
+// 		return <h1>{props.text}</h1>
 // 	}
 // }
-// let details = {
-// 	name: "Asy",
-// 	age: 12
-// };
-// let person = new Person(details);
-// let h1=(
-// 	<div>
-// 		<h1>Name: {person.name}</h1>
-// 		<h2>Age: {person.age}</h2>
-// 	</div>
-// )
+
+// let o = new hoho(); //создаем новый объект
+// o.a(); //вызов его метода а
+// let Element = o.render; //элемент это ф-ция, кот принимает один элемент 
 
 /**********************/
-function Person(props){
-	// return 'ahaha';
-	// return <span style={{color:'red'}}>'hghghgh'</span>;
-	return (
-			<div>
-				<h1>Name: {props.name}</h1>
-				<h2>Age: {props.age}</h2>
-			</div>
-		)
 
+
+// class hoho {
+// 	constructor(props){
+// 		if(!props.text){
+// 			props.text = 'default';
+// 		}
+// 		this.props = props;
+// 	}
+// 	upper(){
+// 		this.props.text = this.props.text.toUpperCase();
+// 	}
+// 	render(props){
+// 		return <h1>{this.props.text}</h1>
+// 	}
+// }
+// let o = new hoho({text: 'some'});
+// // o.upper();
+
+// let Element = o.render.bind(o);//без bind работать не будет
+
+// let content = (
+// 	<div>
+// 		<Element text='elem'/>
+// 	</div>
+// 	)
+
+
+/**********************/
+
+// class Heading extends React.Component {
+// 	render(){ //НЕ ПРИНИМАЕТ АРГУМЕНТОВ И ДОЛЖЕНТ ЧТО ТО ВОЗВРАЩАТЬ!!!!
+// 		return (
+// 			// <h1>
+// 			// 	'hello '
+// 			// </h1>
+
+// 			<h1>{this.props.text}</h1>
+// 			);
+// 	}
+// }
+
+
+// let content = (
+// 	<div>
+// 		<Heading text='hhhf'/>
+// 		<Heading text='aaaaaaaaaaaaa'/>
+// 	</div>
+
+// 	)
+
+
+/**********************/
+let a = {
+	name: 'Danya',
+	age: 20
+};
+let b = {
+	name: 'Vita',
+	age: 25
+};
+
+// class Info extends React.Component{
+// 	render(){
+// 		return (
+// 			<div>
+// 				<h1>{this.props.person.name}</h1>
+// 				<h2>{this.props.person.age}</h2>
+// 			</div>
+// 			);
+// 	}
+// }
+
+class Info extends React.Component{
+	render(){
+		let {name, age} = this.props.person;
+		return (
+			<div>
+				<h1>{name}(<em>{age}</em>)</h1>
+				<blockquote>{this.props.children}</blockquote>
+			</div>
+			);
+	}
 }
 
-let h1 = (
+let content = (
 	<div>
-		<Person age="77"/>
+		<Info person={a}>some details</Info>
+		<Info person={b}/>
 		
-		{Person ({name: 'Anton', age: 22})}
-		<Person name="DDDDDD" age="55"/>
 	</div>
-)
+
+	)
+ReactDOM.render(content, root);
 
 
-
-
-
-
-
-ReactDOM.render(
-	h1,
-	document.getElementById('root')
-);
