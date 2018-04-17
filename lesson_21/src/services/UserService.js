@@ -15,8 +15,10 @@ export class UserService{
 		// req.open('POST', this.url);
 		// req.send(str);
 
-		fetch(this.url, {
+		return fetch(this.url, {
 			method: 'POST', body:str
-		}).then
+		}).then(
+			resp => resp.status === 200
+		);
 	}
 }

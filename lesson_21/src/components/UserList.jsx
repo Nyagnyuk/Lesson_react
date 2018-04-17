@@ -1,18 +1,9 @@
 import React from 'react';
-// import { Todo } from './Todo';
-// import { AddTodo } from './AddTodo';
-
-export class UserList extends React.Component{
-	constructor(props){
-		super(props);
-		this.state = {		
-		};
-	}
+import { appObject } from '../App';
 
 
-
-render(){
-	let users = this.props.users;
+export const UserList = () => {
+	let users = appObject.state.users;
 	 return (
 	 	<div>
 	 	<h3>User List:</h3>
@@ -24,5 +15,5 @@ render(){
 
 		);
 	}
-}
+
 

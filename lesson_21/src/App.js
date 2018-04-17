@@ -3,10 +3,12 @@ import { UserList } from './components/UserList';
 import { AddUser } from './components/AddUser';
 import { UserService } from './services/UserService';
 
+export let appObject ;
 
 class App extends Component {
 	constructor(props){
 		super(props);
+		appObject = this;
 		this.state = {
 			users: [  ]
 		};
@@ -30,7 +32,7 @@ class App extends Component {
 	render() {
 	    return (
 	    	<div className="container ">
-	    		<button onClick={ () => this.pullUsers()}>refresh</button>
+	    		
 	    		<UserList users={this.state.users} />
 	    		<AddUser userService={this.userService} />
 	      	</div>
