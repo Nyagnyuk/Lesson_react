@@ -1,48 +1,70 @@
-
-// export Function prepareState(info, appObject ){
-// 	// if(info.type = 'CHANGE_USERS'){
-
-// 	// }
-
-// 	// appObject.setState({})
-// }
-
-// prepareState('CHANGE_NAME', id, name)
-// prepareState('CHANGE_TWEET', author, body)
-// prepareState('CHANGE_COMMENT', author, id, hidden, content)
-
+import { UserService } from './services/UserService';
 
 export function dispatch( info, app ){
-	// let state = Object.assign({}, app.state);
+	
+	let state = {
+		counter: maybeCounter(info, app.state.counter),
+		items: maybeItems(info, app.state.items),
+		users: maybeUsers(info, app.state.users),
+		currentUser: maybeCurrentUser(info,app.state.currentUser)
 
-	// let state = { ...app.state}; //получаем копию
-	let state = {...app.state};
-	// state.items = [ ...app.state.items];
 
-	// let state = { };
-	// state.counter = app.state.counter;
-	// state.items = [];
-	// state.items[0] = app.state.items[0]
-
-	if( info.type === 'ADD_ITEM'){
-		let currentLenght = app.state.items.length;
-		// state.items.push(currentLenght + 1)
-
-		let value = currentLenght + 1;
-		state.items = [...state.items, value];
-		
-	}else if (info.type === 'INC_COUNTER'){
-		if((state.counter+1) % 5){ //если не кратное 5
-			// state.counter++;
-			state = {...state};//получили копию, потом изменяем
-			state.counter++;
-		}else{
-			state = {...state};
-			state.counter +=2;
-		}
-	}else{
- 
-	}
+	};
 
 	app.setState(state);
+}
+
+function maybeCurrentUser(info, current){
+	switch(info.type){
+		case 'LOGIN_USER':
+		let {name, pwd} = info;
+		return {name:name, pwd: pwd};
+		case 'LOGOUT_USER':
+		return { name: 'Anonimous', pwd: null};
+
+		default: return current;
+	}
+}
+
+function maybeCounter(info, counter){
+	let diff;
+	switch(info.type){
+		case 'INC_COUNTER':
+			diff = (counter + 1) % 5 ? 1 : 2;
+			return counter + diff;
+			break;
+		case 'DEC_COUNTER':
+			diff = (counter - 1) % 5 ? 1 : 2;
+			return counter - diff;
+			break;	
+		default:
+			return counter;	
+	}
+}
+
+function maybeItems(info, items){
+	switch(info.type){
+		case 'ADD_ITEM':
+		let value = items.length + 1;
+		return [...items, value];
+			
+			break;
+		
+		default:
+			return items;	
+	}
+}
+
+function maybeUsers(info, users){
+	let service = new UserService();
+	switch(info.type){		
+
+			case 'SAVE_USER':
+			let {pwd, name} = info;
+			service.save(pwd,name);
+			return [...users, {name:name, pwd:pwd, id: -1} ];
+
+		default:
+			return users;	
+	}
 }

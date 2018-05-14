@@ -1,10 +1,16 @@
 import React from 'react';
-import { appObject } from '../App';
+import {dispatch} from '../reducer';
 
 
-function triggerUpdate(){
-	appObject.pullUsers();
-}
+
+
+// const saveUser = (name,pwd) =>
+// 	appObject.userService
+// 	.save(name.value, pwd.value)
+// 	.then( isOk => isOk ? triggerUpdate() : alert('Error during save'))
+// 	.then( () => name.value = '')
+// 	.then( () => pwd.value = '');
+
 
 export const AddUser = props =>{
 	let name, pwd;
@@ -15,7 +21,12 @@ export const AddUser = props =>{
 		<hr/>
 		<button 
 			className="btn btn-success" 
-			onClick={ () => appObject.userService.save(name.value, pwd.value).then( isOk => isOk ? triggerUpdate() : 0).then( () => name.value = '').then( () => pwd.value = '')}>
+			onClick={ () => dispatch(
+				{ 
+					type: 'SAVE_USER',
+					 pwd: pwd.value,
+					  name: name.value
+					}, props.app)}>
 			Save
 		</button>
 	</div>

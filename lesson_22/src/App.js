@@ -3,6 +3,7 @@ import { UserList } from './components/UserList';
 import { AddUser } from './components/AddUser';
 import { UserService } from './services/UserService';
 import { DisplayData } from './components/DisplayData';
+import {dispatch} from './reducer';
 
 export let appObject ;
 
@@ -11,9 +12,10 @@ class App extends Component {
 		super(props);
 		appObject = this;
 		this.state = {
-			// users: [  ]
+			users: [ ],
 			counter: 0,
-			items: [1,2]
+			items: [],
+			currentUser: {name: 'Anonimus', pwd: null}
 		};
 		this.userService = new UserService();
 	}
@@ -30,7 +32,11 @@ class App extends Component {
 	render() {
 	    return (
 	    	<div className="container ">
-	    		<DisplayData app={this}/>
+	    	<h1 
+	    	onClick={() => dispatch({type: 'LOGOUT_USER'}, this)}
+	    	>Hello, {this.state.currentUser.name}</h1>
+	    		<UserList app={this}/>
+	    		{ !this.state.currentUser.pwd  && <AddUser app={this}/>}
 	      	</div>
 	    );
 	}
